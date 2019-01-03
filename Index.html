@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Student.css">
     <title>Document</title>
 </head>
-<body>
-    <form name="signUp">
-        <div class="container">
-            
-        </div>
 
+<body>
+
+    <div id="signUpForm" class="container">
+        <form name="signUp">
+            <div class="form-group">
+                <label for="nameInput">Name</label>
+                <input type="text" name="name" class="form-control" id="nameInput" placeholder="Enter Name">
+            </div>
+
+            <label for="passwordInput">Password</label>
+            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
+            <button onclick="getData()" type="button" class="btn btn-primary signUpBtn">SignUp</button>
+    </div>
     </form>
+    </div>
+    <div id="studPage" class="container studPage" >
+        <div >
+            <h2>Wellcom <span id="studTitle"></span></h2>
+            <table>
+                <tr></tr>
+            </table>
+        </div>
+    </div>
+
 </body>
+<script src="Student.js"></script>
+
 </html>
