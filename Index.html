@@ -10,28 +10,56 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="onLoad()" onhashchange="pageHandle()">
 
-    <div id="signUpForm" class="container">
+    <div id="signUpForm" class="container"  >
         <form name="signUp">
             <div class="form-group">
-                <label for="nameInput">Name</label>
+                <label for="nameInput">User name</label>
                 <input type="text" name="name" class="form-control" id="nameInput" placeholder="Enter Name">
             </div>
 
             <label for="passwordInput">Password</label>
             <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
-            <button onclick="getData()" type="button" class="btn btn-primary signUpBtn">SignUp</button>
+            <button onclick="getData(1)" type="button" class="btn btn-primary signUpBtn">SignUp</button>
     </div>
     </form>
     </div>
-    <div id="studPage" class="container studPage" >
-        <div >
+    <div id="studPage" class="container studPage">
+        <div>
             <h2>Wellcom <span id="studTitle"></span></h2>
-            <table>
-                <tr></tr>
-            </table>
+            <form name="course">
+                <div id="cuorseForm" class="form-group">
+                    <label for="courseNum">Course number</label>
+                    <input type="number" name="courseNum" class="form-control" placeholder="Enter Name">
+
+                    <label for="courseName">Course name</label>
+                    <input type="text" name="courseName" class="form-control" placeholder="Enter Name">
+
+                    <label for="lecturerName">lecturer name</label>
+                    <input type="text" name="lecturerName" class="form-control" placeholder="Enter Name">
+
+                    <label for="hourNum">Number of hours</label>
+                    <input type="number" name="hourNum" class="form-control" placeholder="Enter Name">
+                    <button onclick="getData(2)" type="button" class="btn btn-primary signUpBtn">Get course</button>
+
+                </div>
+            </form>
         </div>
+    </div>
+
+    <div class="container studDetels" id="studDetels">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Course number</th>
+                    <th scope="col">Course name</th>
+                    <th scope="col">lecturer name</th>
+                    <th scope="col">Number of hours</th>
+                </tr>
+                <tr id="cuorsList"></tr>
+            </thead>
+        </table>
     </div>
 
 </body>

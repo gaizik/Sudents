@@ -1,9 +1,13 @@
-.signUpBtn{
+.signUpBtn {
     margin: 15px auto 0 !important;
     display: block;
-
 }
 
-.studPage{
+.studPage {
+    display: none;
+}
+
+.tudDitle,
+.studDetels {
     display: none;
 }
