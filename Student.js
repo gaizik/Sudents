@@ -5,8 +5,12 @@ const studTitle = document.getElementById('studTitle');
 const studDetels = document.getElementById('studDetels');
 const cuorseForm = document.getElementById('cuorseForm');
 const cuorsList = document.getElementById('cuorsList');
+const elem = document.getElementsByTagName('td');
 
 
+
+
+/// Student Obj
 class Student {
     constructor(_name, _password, _course, _cNunber, _lectuer, _houers) {
         this.name = _name;
@@ -17,7 +21,7 @@ class Student {
         this.houers = _houers;
     }
 
-    loginTolocal() {
+    loginTolocal() { // insert user name and pass to loacal
         if (localStorage.studLogin) {
             localStorage.removeItem(studLogin);
         }
@@ -39,11 +43,13 @@ class Student {
 }
 
 function onLoad() {
-    let loing = JSON.parse(localStorage.getItem('studLogin'));
+    if (localStorage.studLogin) {
+        let loing = JSON.parse(localStorage.getItem('studLogin'));
+        studTitle.innerHTML = loing.userName;
+        setData(0);
+    }
     location.hash = localStorage.studLogin ? '#table' : '';
-    studTitle.innerHTML = loing.userName;
     pageHandle();
-    setData(0);
 }
 
 var studetnObj = new Student();
@@ -80,8 +86,64 @@ function setData(form) {
 
         cuorsList.innerHTML = td;
         location.hash = "table";
+        for (let i = 0; i < elem.length; i++) {
+            elem[i].addEventListener("click", function () {
+                editTab(i);
+            })
+        }
     }
     pageHandle();
+}
+
+function editTab(tab){
+    var person = prompt("Please enter your name:", "Harry Potter");
+}
+
+function deleteHandle(arg) {
+    var aprove = confirm("Do you wish to Delete ?");
+    if (arg === 0) { // 0 delete all student arg from local
+        deletStudent(aprove).then(function (result) {
+            localStorage.clear();
+             onLoad();
+        }), function (error) {
+            console.log(error);
+        };
+    }
+    if (arg === 1) {//  1 delete only cuorse arg from local
+        deletCuorse(aprove).then(function (result) {
+            localStorage.removeItem('studCourse');
+            while (cuorsList.firstChild) {
+                cuorsList.removeChild(cuorsList.firstChild);
+            }
+
+        }), function (error) {
+            console.log(error);
+        }
+    }
+}
+
+function deletCuorse(confirm) {
+    var myPromise = new Promise(function (resolve, reject) {
+        if (confirm) {
+            resolve();
+        }
+        else {
+            reject('deletCuorse Not aprove');
+        }
+    })
+    return myPromise;
+}
+
+function deletStudent(confirm) {
+    var myPromise = new Promise(function (resolve, reject) {
+        if (confirm) {
+            resolve();
+        }
+        else {
+            reject('deletStudent Not aprove');
+        }
+    })
+    return myPromise;
 }
 
 function pageHandle() {
