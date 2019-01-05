@@ -12,15 +12,21 @@
 
 <body onload="onLoad()" onhashchange="pageHandle()">
 
-    <div id="signUpForm" class="container"  >
+    <div id="signUpForm" class="container">
         <form name="signUp">
-            <div class="form-group">
-                <label for="nameInput">User name</label>
-                <input type="text" name="name" class="form-control" id="nameInput" placeholder="Enter Name">
-            </div>
+            <div class="form-group row">
 
-            <label for="passwordInput">Password</label>
-            <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
+                <label for="nameInput" class="col-sm-2 col-form-label">User name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" id="nameInput" placeholder="Enter Name">
+                </div>
+            </div>
+            <div class="form-group row">
+            <label for="passwordInput" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
+            </div>
+            </div>
             <button onclick="getData(1)" type="button" class="btn btn-primary signUpBtn">SignUp</button>
     </div>
     </form>
@@ -29,8 +35,9 @@
         <div>
             <h2>Wellcom <span id="studTitle"></span></h2>
             <form name="course">
-                <div id="cuorseForm" class="form-group">
-                    <label for="courseNum">Course number</label>
+                <div id="cuorseForm" class="form-group row">
+
+                    <label for="courseNum" class="col-sm-2 col-form-label">Course number</label>
                     <input type="number" name="courseNum" class="form-control" placeholder="Enter Name">
 
                     <label for="courseName">Course name</label>
@@ -61,10 +68,8 @@
             </thead>
         </table>
         <div class="buttons container">
-            <button type="button" class="btn btn-outline-danger" onclick="deleteHandle(0)" >Delet all go to SignUp</button>
-            <button type="button" class="btn btn-outline-primary" onclick="deleteHandle(1)" >Delete cuorse</button>
-            <button type="button" class="btn btn-outline-primary">Primary</button>
-
+            <button type="button" class="btn btn-outline-danger" onclick="deleteHandle(0)">Delet all go to SignUp</button>
+            <button type="button" class="btn btn-outline-primary" onclick="deleteHandle(1)">Delete cuorse</button>
         </div>
     </div>
 

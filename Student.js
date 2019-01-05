@@ -1,3 +1,4 @@
+
 'use strict'
 const signUpForm = document.getElementById('signUpForm');
 const studPage = document.getElementById('studPage');
@@ -46,7 +47,10 @@ function onLoad() {
     if (localStorage.studLogin) {
         let loing = JSON.parse(localStorage.getItem('studLogin'));
         studTitle.innerHTML = loing.userName;
-        setData(0);
+        if (localStorage.studCourse) {
+            setData(0);
+        }
+
     }
     location.hash = localStorage.studLogin ? '#table' : '';
     pageHandle();
@@ -77,6 +81,7 @@ function setData(form) {
         location.hash = "cuorse";
     }
     else {
+        let att = ['cNunber', 'course', 'houers', 'lectuer'];
         let course = JSON.parse(localStorage.getItem('studCourse'));
         let td = '<td>' +
             course.cNunber + '</td> <td>' +
@@ -87,16 +92,26 @@ function setData(form) {
         cuorsList.innerHTML = td;
         location.hash = "table";
         for (let i = 0; i < elem.length; i++) {
+            elem[i].setAttribute("data-course", att[i]);
             elem[i].addEventListener("click", function () {
-                editTab(i);
+                editTab(elem[i]);
             })
         }
     }
     pageHandle();
 }
 
-function editTab(tab){
-    var person = prompt("Please enter your name:", "Harry Potter");
+function editTab(tab) {
+    var courseAttr = tab.getAttribute("data-course");
+    var txt = prompt("Please enter your name:", tab.textContent);
+    let course = JSON.parse(localStorage.getItem('studCourse'));
+    for (var key in course) {
+        if (key == courseAttr) {
+            course[key] = txt;
+        }
+    }
+    localStorage.setItem('studCourse', JSON.stringify(course));
+    tab.innerHTML = txt;
 }
 
 function deleteHandle(arg) {
@@ -104,7 +119,7 @@ function deleteHandle(arg) {
     if (arg === 0) { // 0 delete all student arg from local
         deletStudent(aprove).then(function (result) {
             localStorage.clear();
-             onLoad();
+            onLoad();
         }), function (error) {
             console.log(error);
         };
